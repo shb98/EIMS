@@ -1,19 +1,24 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Web;
 
-namespace EIMS.DataModel
+namespace Host.IIS.Models
 {
-    public class Employee
+    public class EmployeeProfileViewModel
     {
-        public int EmployeeId { get; set; }
-
+        [Required]
         public string FullName { get; set; }
 
         public string Gender { get; set; }
 
+        [Required]
         public string Address { get; set; }
 
         public string Phone { get; set; }
 
+        [Required]
         public string MobilePhone { get; set; }
 
         public string Title { get; set; }

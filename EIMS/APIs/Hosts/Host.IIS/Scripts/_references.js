@@ -12,3 +12,5 @@
 /// <reference path="angular-ui/ui-bootstrap-tpls.js" />
 /// <reference path="angular-ui/ui-bootstrap.js" />
 /// <reference path="jquery.validate.js" />
+/// <reference path="app.js" />
+/// <reference path="../binding/viewmodels/profileviewmodel.js" />

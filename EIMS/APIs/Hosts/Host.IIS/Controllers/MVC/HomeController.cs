@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
-namespace Host.IIS.Controllers
+namespace Host.IIS.Controllers.MVC
 {
     public class HomeController : Controller
     {

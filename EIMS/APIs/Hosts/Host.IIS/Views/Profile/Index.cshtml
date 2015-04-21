@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "My Profile";
+}
+@section scripts
+{
+    <script src="@Url.Content("~/Binding/ViewModels/ProfileViewModel.js")" type="text/javascript"></script>
+}
+
+<br />
+<h2>My Profile</h2>
+
+
+<div data-ng-controller="MyProfileViewModel">
+    <div ng-switch="viewMode">
+        <div ng-switch-when="profile">
+            <form>
+                @Html.Partial("~/Views/Shared/_ValidationErrors.cshtml")
+                <p class="input-group" style="width: 400px">
+                    <span class="input-group-addon" style="width: 140px; text-align: left;">Full Name:</span>
+                    <input type="text" class="form-control" ng-model="profileModel.FullName" placeholder="full name" />
+                </p>
+                <p class="input-group" style="width: 400px">
+                    <span class="input-group-addon" style="width: 140px; text-align: left;">Gender:</span>
+                    <input type="text" class="form-control" ng-model="profileModel.Gender" placeholder="gender" />
+                </p>
+                <p class="input-group" style="width: 400px">
+                    <span class="input-group-addon" style="width: 140px; text-align: left;">Birthday:</span>
+                    <input type="text" class="form-control" ng-model="profileModel.Birthday" placeholder="MM/YYYY" />
+                </p>
+                <p class="input-group" style="width: 500px">
+                    <span class="input-group-addon" style="width: 140px; text-align: left;">Address:</span>
+                    <input type="text" class="form-control" ng-model="profileModel.Address" placeholder="address" />
+                </p>
+                <p class="input-group" style="width: 500px">
+                    <span class="input-group-addon" style="width: 140px; text-align: left;">Phone:</span>
+                    <input type="text" class="form-control" ng-model="profileModel.Phone" placeholder="phone" />
+                </p>
+                <p class="input-group" style="width: 250px">
+                    <span class="input-group-addon" style="width: 140px; text-align: left;">Mobile Phone:</span>
+                    <input type="text" class="form-control" ng-model="profileModel.MobilePhone" placeholder="mobile phone" />
+                </p>
+                <p class="input-group" style="width: 300px">
+                    <span class="input-group-addon" style="width: 140px; text-align: left;">Title:</span>
+                    <input type="text" class="form-control" ng-model="profileModel.Title" placeholder="title" />
+                </p>
+                <hr style="width: 415px; text-align: left;" />
+                <p>
+                    <button type="submit" class="btn btn-info" ng-click="save()">Save</button>
+                </p>
+            </form>
+        </div>
+        <div ng-switch-when="success">
+            <h2>Profile information updated!</h2>
+        </div>
+    </div>
+</div>

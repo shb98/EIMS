@@ -7,18 +7,36 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Employee Information Management System</p>
-        </footer>
-    </div>
+    <body data-ng-app="appMain">
+        @Html.Partial("~/Views/Shared/_TopBar.cshtml")
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - Employee Information Management System</p>
+            </footer>
+        </div>
+        
+        <script type="text/javascript">
+            window.EIMS = {};
+            (function (eims) {
+                var rootPath;
+                eims.rootPath = rootPath;
+            }(window.EIMS));
+            EIMS.rootPath = '@Url.Content("~")';
+            //alert(EIMS.rootPath);
+        </script>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/angular")
-    @RenderSection("scripts", required: false)
-</body>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/bundles/angular")
+
+        <script src="~/Scripts/angular-ui/ui-bootstrap-tpls.js"></script>
+        <script src="@Url.Content("~/Scripts/App.js")" type="text/javascript"></script>
+        
+        @RenderSection("scripts", required: false)
+        <script type="text/javascript">
+            @RenderSection("footerScript", required: false)
+        </script>
+    </body>
 </html>
