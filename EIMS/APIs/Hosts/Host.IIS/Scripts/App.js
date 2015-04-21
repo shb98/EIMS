@@ -22,6 +22,12 @@ commonModule.factory('validator', function () {
         self.isLoading = false;
 
         self.apiGet = function (uri, data, success, failure, always) {
+            var spinner = new Spinner().spin();
+            var spinContainer = document.getElementById("spinContainer");
+            if (spinContainer) {
+                spinner.spin(spinContainer);
+            }
+
             self.isLoading = true;
             self.modelIsValid = true;
             $http.get(EIMS.rootPath + uri, data)
@@ -30,6 +36,7 @@ commonModule.factory('validator', function () {
                     if (always != null)
                         always();
                     self.isLoading = false;
+                    spinner.stop();
                 }, function (result) {
                     if (failure == null) {
                         if (result.status != 400)
@@ -43,18 +50,27 @@ commonModule.factory('validator', function () {
                     if (always != null)
                         always();
                     self.isLoading = false;
+                    spinner.stop();
                 });
         }
 
         self.apiPost = function (uri, data, success, failure, always) {
             self.isLoading = true;
             self.modelIsValid = true;
+
+            var spinner = new Spinner().spin();
+            var spinContainer = document.getElementById("spinContainer");
+            if (spinContainer) {
+                spinner.spin(spinContainer);
+            }
+
             $http.post(EIMS.rootPath + uri, data)
                 .then(function (result) {
                     success(result);
                     if (always != null)
                         always();
                     self.isLoading = false;
+                    spinner.stop();
                 }, function (result) {
                     if (failure == null) {
                         if (result.status != 400)
@@ -68,6 +84,7 @@ commonModule.factory('validator', function () {
                     if (always != null)
                         always();
                     isLoading = false;
+                    spinner.stop();
                 });
         }
 

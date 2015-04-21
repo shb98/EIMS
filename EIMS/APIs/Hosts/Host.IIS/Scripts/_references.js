@@ -14,3 +14,4 @@
 /// <reference path="jquery.validate.js" />
 /// <reference path="app.js" />
 /// <reference path="../binding/viewmodels/profileviewmodel.js" />
+/// <reference path="spin.js" />
