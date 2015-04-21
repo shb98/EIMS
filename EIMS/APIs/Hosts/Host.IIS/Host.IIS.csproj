@@ -47,6 +47,7 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.Entity" />
@@ -139,6 +140,8 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Common\MefAPIDependencyResolver.cs" />
+    <Compile Include="Common\MefDependencyResolver.cs" />
     <Compile Include="Common\ValidateModelAttribute.cs" />
     <Compile Include="Controllers\API\ProfileApiController.cs" />
     <Compile Include="Controllers\MVC\HomeController.cs" />
@@ -252,7 +255,16 @@
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Shared\_ValidationErrors.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Core.Common\Core.Common.csproj">
+      <Project>{903089fb-48fd-49c4-9c5c-ef90cb070959}</Project>
+      <Name>Core.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\DAL\EIMS.Data\EIMS.Data.csproj">
+      <Project>{40b61378-089c-499b-bf9b-cfa70122bf64}</Project>
+      <Name>EIMS.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

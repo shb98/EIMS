@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity;
 
-namespace EIMS.DataModel
+namespace EIMS.Data
 {
     public class EIMSDataContext : DbContext
     {

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace EIMS.DataModel
+﻿namespace EIMS.Data
 {
     public class Employee
     {
