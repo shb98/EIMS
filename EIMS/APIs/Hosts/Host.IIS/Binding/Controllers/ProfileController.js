@@ -1,4 +1,4 @@
-﻿appMainModule.controller("MyProfileViewModel", function($scope, $http, viewModelHelper, validator) {
+﻿appMainModule.controller("MyProfileController", function($scope, $http, viewModelHelper, validator) {
 
     $scope.viewMode = ''; // profile, success
     $scope.profileModel = null;
@@ -10,6 +10,9 @@
     var setupRules = function () {
         accountModelRules.push(new validator.PropertyRule("FullName", {
             required: { message: "Full name is required" }
+        }));
+        accountModelRules.push(new validator.PropertyRule("Email", {
+            required: { message: "Email is required" }
         }));
         accountModelRules.push(new validator.PropertyRule("Address", {
             required: { message: "Address is required" }

@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.Composition;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -13,27 +12,32 @@ namespace Host.IIS.Controllers.API
     [Export]
     [PartCreationPolicy(CreationPolicy.NonShared)]
     [RoutePrefix("api/profile")]
-    public class ProfileApiController : ApiController
+    [Authorize]
+    public class ProfileApiController : ApiControllerBase
     {
         private readonly IEmployeeRepository _employeeRepository;
+        private readonly ISecurityAdapter _securityAdapter;
 
         [ImportingConstructor]
-        public ProfileApiController(IEmployeeRepository employeeRepository)
+        public ProfileApiController(IEmployeeRepository employeeRepository, ISecurityAdapter securityAdapter)
         {
             _employeeRepository = employeeRepository;
+            _securityAdapter = securityAdapter;
+
+            _securityAdapter.Initialize();
         }
 
         [HttpGet]
         [Route("profileinfo")]
         public HttpResponseMessage GetProfileInfo(HttpRequestMessage request)
         {
-            //todo: get user id from authentication
-            var employeeId = 1;
+            var employeeId = CurrentUserId;
             var employee = _employeeRepository.Get(employeeId);
 
-            var viewModel = new EmployeeProfileViewModel()
+            var viewModel = new EmployeeProfileViewModel
             {
                 FullName = employee.FullName,
+                Email = employee.Email,
                 Address = employee.Address,
                 Gender = employee.Gender,
                 MobilePhone = employee.MobilePhone,
@@ -47,14 +51,16 @@ namespace Host.IIS.Controllers.API
         [HttpPost]
         [Route("profileinfo")]
         [ValidateModel]
+        [Authorize]
         public HttpResponseMessage SaveProfileInfo(HttpRequestMessage request, EmployeeProfileViewModel profileModel)
         {
-            //todo: get user id from authentication
-            var employeeId = 1;
-            var employee = new Employee()
+            var employeeId = CurrentUserId;
+
+            var employee = new Employee
             {
                 EmployeeId = employeeId,
                 FullName = profileModel.FullName,
+                Email = profileModel.Email,
                 Address = profileModel.Address,
                 Gender = profileModel.Gender,
                 MobilePhone = profileModel.MobilePhone,
@@ -64,7 +70,7 @@ namespace Host.IIS.Controllers.API
 
             _employeeRepository.Update(employee);
 
-            var response = request.CreateResponse(HttpStatusCode.OK);
+            HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK);
             return response;
         }
     }

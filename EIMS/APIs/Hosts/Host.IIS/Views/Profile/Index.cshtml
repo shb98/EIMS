@@ -3,14 +3,14 @@
 }
 @section scripts
 {
-    <script src="@Url.Content("~/Binding/ViewModels/ProfileViewModel.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Binding/Controllers/ProfileController.js")" type="text/javascript"></script>
 }
 
 <br />
 <h2>My Profile</h2>
 
 
-<div data-ng-controller="MyProfileViewModel">
+<div data-ng-controller="MyProfileController">
     <div id="spinContainer"></div>
     <div ng-switch="viewMode">
         <div ng-switch-when="profile">
@@ -21,12 +21,12 @@
                     <input type="text" class="form-control" ng-model="profileModel.FullName" placeholder="full name" />
                 </p>
                 <p class="input-group" style="width: 400px">
-                    <span class="input-group-addon" style="width: 140px; text-align: left;">Gender:</span>
-                    <input type="text" class="form-control" ng-model="profileModel.Gender" placeholder="gender" />
+                    <span class="input-group-addon" style="width: 140px; text-align: left;">Email:</span>
+                    <input type="text" class="form-control" ng-model="profileModel.Email" placeholder="email" />
                 </p>
                 <p class="input-group" style="width: 400px">
-                    <span class="input-group-addon" style="width: 140px; text-align: left;">Birthday:</span>
-                    <input type="text" class="form-control" ng-model="profileModel.Birthday" placeholder="MM/YYYY" />
+                    <span class="input-group-addon" style="width: 140px; text-align: left;">Gender:</span>
+                    <input type="text" class="form-control" ng-model="profileModel.Gender" placeholder="gender" />
                 </p>
                 <p class="input-group" style="width: 500px">
                     <span class="input-group-addon" style="width: 140px; text-align: left;">Address:</span>
