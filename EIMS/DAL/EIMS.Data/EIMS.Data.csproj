@@ -47,13 +47,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataRepositories\IEmployeeRepository.cs" />
-    <Compile Include="DataRepositories\EmployeeRepository.cs" />
+    <Compile Include="Attendance.cs" />
+    <Compile Include="DataRepositories\IEmployeeProfileRepository.cs" />
+    <Compile Include="DataRepositories\EmployeeProfileRepository.cs" />
     <Compile Include="DataRepositoryBase.cs" />
+    <Compile Include="Department.cs" />
     <Compile Include="EIMSDataContext.cs" />
     <Compile Include="Employee.cs" />
+    <Compile Include="EmployeeMovement.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SalaryReport.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -11,5 +11,9 @@ namespace EIMS.Data
         }
 
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<Department> Departments { get; set; }
+        public DbSet<EmployeeMovement> EmployeeMovements { get; set; }
+        public DbSet<VacationRequest> VacationRequests { get; set; }
+        public DbSet<SalaryReport> SalaryReports { get; set; } 
     }
 }

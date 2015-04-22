@@ -1,4 +1,4 @@
-﻿appMainModule.controller("MyProfileController", function($scope, $http, viewModelHelper, validator) {
+﻿appMainModule.controller("MyProfileController", function($scope, $http, $filter, viewModelHelper, validator) {
 
     $scope.viewMode = ''; // profile, success
     $scope.profileModel = null;
@@ -26,6 +26,7 @@
         viewModelHelper.apiGet('api/profile/profileinfo', null,
             function(result) {
                 $scope.profileModel = result.data;
+                $scope.profileModel.Birthday = $filter('date')($scope.profileModel.Birthday, 'yyyy/MM/dd');
                 $scope.viewMode = 'profile';
             });
     };

@@ -2,7 +2,7 @@
 
 namespace EIMS.Data.DataRepositories
 {
-    public interface IEmployeeRepository : IDataRepository<Employee>
+    public interface IEmployeeProfileRepository : IDataRepository<Employee>
     {
     }
 }

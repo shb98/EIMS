@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace Host.IIS.Models
 {
@@ -16,6 +13,8 @@ namespace Host.IIS.Models
 
         public string Gender { get; set; }
 
+        public DateTime Birthday { get; set; }
+
         [Required]
         public string Address { get; set; }
 
@@ -25,5 +24,7 @@ namespace Host.IIS.Models
         public string MobilePhone { get; set; }
 
         public string Title { get; set; }
+
+        public string Department { get; set; }
     }
 }

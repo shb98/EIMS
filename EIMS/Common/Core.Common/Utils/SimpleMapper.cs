@@ -7,11 +7,11 @@ namespace Core.Common.Utils
 {
     public static class SimpleMapper
     {
-        public static void PropertyMap<T, U>(T source, U destination)
+        public static void PropertyMap<T, U>(T source, U destination, List<string> ignoredProperties = null)
             where T : class, new()
             where U : class, new()
         {
-            List<PropertyInfo> sourceProperties = source.GetType().GetProperties().ToList<PropertyInfo>();
+            List<PropertyInfo> sourceProperties = source.GetType().GetProperties().Where(p => ignoredProperties == null || !ignoredProperties.Contains(p.Name)).ToList<PropertyInfo>();
             List<PropertyInfo> destinationProperties = destination.GetType().GetProperties().ToList<PropertyInfo>();
 
             foreach (PropertyInfo sourceProperty in sourceProperties)

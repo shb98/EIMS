@@ -25,7 +25,7 @@ appMainModule.controller("AccountLoginController", function ($scope, $http, $loc
             viewModelHelper.apiPost('api/account/login', $scope.accountModel,
                 function (result) {
                     if ($scope.returnUrl != '' && $scope.returnUrl.length > 1) {
-                        window.location.href = EIMS.rootPath + $scope.returnUrl.substring(1);
+                        window.location.href = $scope.returnUrl;
                     }
                     else {
                         window.location.href = EIMS.rootPath;

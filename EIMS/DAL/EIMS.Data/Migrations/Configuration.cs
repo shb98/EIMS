@@ -1,11 +1,8 @@
+using System.Data.Entity.Migrations;
+
 namespace EIMS.Data.Migrations
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
-
-    internal sealed class Configuration : DbMigrationsConfiguration<EIMS.Data.EIMSDataContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<EIMSDataContext>
     {
         public Configuration()
         {
@@ -13,20 +10,17 @@ namespace EIMS.Data.Migrations
             ContextKey = "EIMS.Data.EIMSDataContext";
         }
 
-        protected override void Seed(EIMS.Data.EIMSDataContext context)
+        protected override void Seed(EIMSDataContext context)
         {
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            context.Departments.AddOrUpdate(
+                p => p.Name,
+                new Department {Name = "Finance", Description = "Finance department"},
+                new Department {Name = "HR", Description = "Human resource department"},
+                new Department {Name = "Purchase", Description = "Purchase department"},
+                new Department {Name = "Sales and Marketing", Description = "Sales and marketing department"},
+                new Department {Name = "Manufacturing", Description = "Manufacturing department"},
+                new Department {Name = "Customer Support", Description = "Customer support department"}
+                );
         }
     }
 }

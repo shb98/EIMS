@@ -19,3 +19,5 @@
 /// <reference path="../binding/controllers/accountlogincontroller.js" />
 /// <reference path="../binding/models/accountchangepasswordmodel.js" />
 /// <reference path="../binding/controllers/accountchangepasswordcontroller.js" />
+/// <reference path="angular-strap.tpl.js" />
+/// <reference path="angular-strap.js" />
