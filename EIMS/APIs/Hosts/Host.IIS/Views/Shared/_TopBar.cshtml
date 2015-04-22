@@ -1,30 +1,31 @@
-﻿<div class="navbar navbar-fixed-top">
+﻿<div class="navbar  navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
-        <div class="container">
-            <ul class="nav nav-pills pull-right">
-                <li class="@if (ViewBag.Name == "Home")
+      <div class="container">
+        <ul class="nav nav-pills pull-right">
+            <li class="@if (ViewBag.Name == "Home")
                     {<text>active</text>}"><a href="@Url.Action("Index", "Home")">Home</a></li>
-                <li class="dropdown @if (ViewBag.Name == "Login")
+            <li class="dropdown @if (ViewBag.Name == "Login")
                     {<text>active</text>}">
-                    @if (!HttpContext.Current.Request.IsAuthenticated)
-                    {
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Not Logged In <b class="caret"></b></a>
-                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                            <li><a href="@Url.Action("Login", "Account")">Login</a></li>
-                        </ul>
-                    }
-                    else
-                    {
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">@HttpContext.Current.User.Identity.Name <b class="caret"></b></a>
-                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                            <li><a href="@Url.Action("Index", "Profile")">My Profile</a></li>
-                            <li class="divider"></li>
-                            <li><a href="@Url.Action("ChangePassword", "Account")">Change Password</a></li>
-                            <li><a href="@Url.Action("Logout", "Account")">Log Out</a></li>
-                        </ul>
-                    }
-                </li>
-            </ul>
-        </div>
+                @if (!HttpContext.Current.Request.IsAuthenticated)
+                {
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Not Logged In <b class="caret"></b></a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <li><a href="@Url.Action("Login", "Account")">Login</a></li>
+                    </ul>
+                }
+                else
+                {
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">@HttpContext.Current.User.Identity.Name <b class="caret"></b></a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <li><a href="@Url.Action("Index", "Profile")">My Profile</a></li>
+                        <li class="divider"></li>
+                        <li><a href="@Url.Action("ChangePassword", "Account")">Change Password</a></li>
+                        <li><a href="@Url.Action("Logout", "Account")">Log Out</a></li>
+                    </ul>
+                }
+            </li>
+        </ul>
     </div>
+</div>
+
 </div>
