@@ -44,5 +44,13 @@ namespace Host.IIS.Controllers.MVC
         {
             return View();
         }
+
+        [HttpGet]
+        [Route("adduser")]
+        [Authorize(Roles = "hr,admin")]
+        public ActionResult AddUser()
+        {
+            
+        }
     }
 }

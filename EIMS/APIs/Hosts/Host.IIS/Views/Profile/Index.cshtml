@@ -29,8 +29,15 @@
                     <input type="text" class="form-control" ng-model="profileModel.Gender" placeholder="gender" />
                 </p>
                 <p class="input-group" style="width: 400px">
+                    @*<span class="input-group-addon" style="width: 140px; text-align: left;">Birthday:</span>
+                    <input type="text" class="form-control" ng-model="profileModel.Birthday">*@
+
                     <span class="input-group-addon" style="width: 140px; text-align: left;">Birthday:</span>
-                    <input type="text" class="form-control" ng-model="profileModel.Birthday">
+                    <input type="text" ng-model="profileModel.Birthday" class="form-control"
+                           datepicker-popup="MM/dd/yyyy" is-open="$parent.openedBirthday" ng-click="openBirthday($event)" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="openBirthday($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
                 </p>
                 <p class="input-group" style="width: 400px">
                     <span class="input-group-addon" style="width: 140px; text-align: left;">Address:</span>

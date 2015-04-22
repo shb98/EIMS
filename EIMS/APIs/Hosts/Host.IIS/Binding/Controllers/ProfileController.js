@@ -1,4 +1,4 @@
-﻿appMainModule.controller("MyProfileController", function($scope, $http, $filter, viewModelHelper, validator) {
+﻿appMainModule.controller("MyProfileController", function ($scope, $http, $filter, $timeout, viewModelHelper, validator) {
 
     $scope.viewMode = ''; // profile, success
     $scope.profileModel = null;
@@ -52,6 +52,12 @@
                 break;
             }
         }
+    }
+
+    $scope.openBirthday = function ($event) {
+        $timeout(function () {
+            $scope.openedBirthday = true;
+        });
     }
 
     setupRules();
