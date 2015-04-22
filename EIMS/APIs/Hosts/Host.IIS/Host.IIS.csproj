@@ -170,14 +170,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AccountChangePasswordModel.cs" />
     <Compile Include="Models\AccountLoginModel.cs" />
     <Compile Include="Models\EmployeeProfileViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Binding\Controllers\AccountChangePasswordController.js" />
     <Content Include="Binding\Controllers\AccountLoginController.js" />
     <Content Include="Binding\Controllers\ProfileController.js" />
+    <Content Include="Binding\Models\AccountChangePasswordModel.js" />
     <Content Include="Binding\Models\AccountLoginModel.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -281,6 +284,7 @@
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Shared\_ValidationErrors.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Common\Core.Common\Core.Common.csproj">

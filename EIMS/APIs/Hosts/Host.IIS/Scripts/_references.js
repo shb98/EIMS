@@ -17,3 +17,5 @@
 /// <reference path="../binding/controllers/profilecontroller.js" />
 /// <reference path="../binding/models/accountloginmodel.js" />
 /// <reference path="../binding/controllers/accountlogincontroller.js" />
+/// <reference path="../binding/models/accountchangepasswordmodel.js" />
+/// <reference path="../binding/controllers/accountchangepasswordcontroller.js" />

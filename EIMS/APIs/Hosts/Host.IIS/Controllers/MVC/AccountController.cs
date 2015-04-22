@@ -37,20 +37,12 @@ namespace Host.IIS.Controllers.MVC
             return RedirectToAction("Index", "Home");
         }
 
-        //[HttpGet]
-        //[Route("changepassword")]
-        //[Authorize]
-        //public ActionResult ChangePassword()
-        //{
-        //    return View();
-        //}
-
-        //[HttpGet]
-        //[Route("forgotpassword")]
-        //[Authorize]
-        //public ActionResult ForgotPassword()
-        //{
-        //    return View();
-        //}
+        [HttpGet]
+        [Route("changepassword")]
+        [Authorize]
+        public ActionResult ChangePassword()
+        {
+            return View();
+        }
     }
 }

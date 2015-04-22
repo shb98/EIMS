@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.Composition;
 using System.Net;
 using System.Net.Http;
+using System.Security;
 using System.Web.Http;
 using Host.IIS.Common;
 using Host.IIS.Models;
@@ -34,6 +35,37 @@ namespace Host.IIS.Controllers.API
                 response = request.CreateErrorResponse(HttpStatusCode.Unauthorized, "Unauthorized login.");
 
             return response;
+        }
+
+        [HttpPost]
+        [Route("changepw")]
+        [Authorize]
+        public HttpResponseMessage ChangePassword(HttpRequestMessage request,
+            [FromBody] AccountChangePasswordModel passwordModel)
+        {
+            HttpResponseMessage response = null;
+
+            ValidateAuthorizedUser(passwordModel.LoginEmail);
+
+            bool success = _securityAdapter.ChangePassword(passwordModel.LoginEmail, passwordModel.OldPassword,
+                passwordModel.NewPassword);
+            if (success)
+            {
+                response = request.CreateResponse(HttpStatusCode.OK);
+            }
+            else
+            {
+                response = request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Unable to change password.");
+            }
+
+            return response;
+        }
+
+        private void ValidateAuthorizedUser(string userRequested)
+        {
+            string userLoggedIn = User.Identity.Name;
+            if (userLoggedIn != userRequested)
+                throw new SecurityException("Attempting to access data for another user.");
         }
     }
 }
