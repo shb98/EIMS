@@ -50,7 +50,7 @@ namespace Host.IIS.Controllers.MVC
         [Authorize(Roles = "hr,admin")]
         public ActionResult AddUser()
         {
-            
+            return View();
         }
     }
 }

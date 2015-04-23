@@ -149,6 +149,7 @@
     <Compile Include="Common\SecurityAdapter.cs" />
     <Compile Include="Common\ValidateModelAttribute.cs" />
     <Compile Include="Controllers\API\AccountApiController.cs" />
+    <Compile Include="Controllers\API\DepartmentController.cs" />
     <Compile Include="Controllers\API\ProfileApiController.cs" />
     <Compile Include="Controllers\MVC\AccountController.cs" />
     <Compile Include="Controllers\MVC\HomeController.cs" />
@@ -158,15 +159,19 @@
     </Compile>
     <Compile Include="Models\AccountChangePasswordModel.cs" />
     <Compile Include="Models\AccountLoginModel.cs" />
+    <Compile Include="Models\CreateNewUserModel.cs" />
+    <Compile Include="Models\DepartmentModel.cs" />
     <Compile Include="Models\EmployeeProfileViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Binding\Controllers\AccountChangePasswordController.js" />
     <Content Include="Binding\Controllers\AccountLoginController.js" />
+    <Content Include="Binding\Controllers\CreateNewUserController.js" />
     <Content Include="Binding\Controllers\ProfileController.js" />
     <Content Include="Binding\Models\AccountChangePasswordModel.js" />
     <Content Include="Binding\Models\AccountLoginModel.js" />
+    <Content Include="Binding\Models\NewUserModel.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
@@ -265,6 +270,7 @@
     <Content Include="Views\Shared\_ValidationErrors.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Account\AddUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Common\Core.Common\Core.Common.csproj">

@@ -10,6 +10,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using EIMS.Data;
 using Host.IIS.Common;
+using WebMatrix.WebData;
 
 namespace Host.IIS
 {
@@ -22,6 +23,10 @@ namespace Host.IIS
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            if (!WebSecurity.Initialized)
+                WebSecurity.InitializeDatabaseConnection("EIMS", "Employees", "EmployeeId", "Email", true);
+
 
             var catalog = new AggregateCatalog();
             catalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly()));

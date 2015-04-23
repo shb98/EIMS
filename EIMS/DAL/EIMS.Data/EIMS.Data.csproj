@@ -48,6 +48,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attendance.cs" />
+    <Compile Include="DataRepositories\DepartmentRepository.cs" />
+    <Compile Include="DataRepositories\IDepartmentRepository.cs" />
     <Compile Include="DataRepositories\IEmployeeProfileRepository.cs" />
     <Compile Include="DataRepositories\EmployeeProfileRepository.cs" />
     <Compile Include="DataRepositoryBase.cs" />

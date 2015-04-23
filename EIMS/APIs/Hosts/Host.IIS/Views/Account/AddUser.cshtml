@@ -1,0 +1,58 @@
+﻿@model Host.IIS.Models.CreateNewUserModel
+
+@{
+    ViewBag.Title = "Create New User";
+}
+@section scripts
+{
+    <script src="@Url.Content("~/Binding/Models/NewUserModel.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Binding/Controllers/CreateNewUserController.js")" type="text/javascript"></script>
+}
+
+<h2>Create New User</h2>
+
+<div data-ng-controller="CreateNewUserController">
+    <div ng-switch="viewMode">
+        <div ng-switch-when="newUser">
+            <br /><br />
+            @Html.Partial("~/Views/Shared/_ValidationErrors.cshtml")
+            <p class="input-group" style="width: 400px;">
+                <span class="input-group-addon" style="width: 140px; text-align: left;">Login Email:</span>
+                <input type="text" class="form-control" ng-model="newUserModel.Email" placeholder=" login email" />
+            </p>
+            <br />
+            <p class="input-group" style="width: 400px;">
+                <span class="input-group-addon" style="width: 140px; text-align: left;">Full Name:</span>
+                <input type="text" class="form-control" ng-model="newUserModel.FullName" placeholder=" full name" />
+            </p>
+            <br />
+            <p class="input-group" style="width: 400px;">
+                <span class="input-group-addon" style="width: 140px; text-align: left;">Department:</span>
+                <select ng-model="newUserModel.DepartmentId"
+                        ng-options="d.DepartmentId as d.Name for d in departments"></select>
+            </p>
+            <br />
+            <p class="input-group" style="width: 400px;">
+                <span class="input-group-addon" style="width: 140px; text-align: left;">Title:</span>
+                <input type="text" class="form-control" ng-model="newUserModel.Title" placeholder=" title" />
+            </p>
+            <hr style="width: 415px; text-align: left;" />
+            <p>
+                <button type="button" class="btn btn-info" ng-click="createNewUser()">Create</button>
+            </p>
+        </div>
+        <div ng-switch-when="success">
+            <h2>User created - thank you.</h2>
+            <p class="input-group" style="width: 400px;">
+                <span class="input-group-addon" style="width: 140px; text-align: left;">Login Email:</span>
+                <input type="text" class="form-control" ng-model="newUserResultModel.Email" placeholder=" old password" />
+            </p>
+            <br />
+            <p class="input-group" style="width: 400px;">
+                <span class="input-group-addon" style="width: 140px; text-align: left;">Temp Password:</span>
+                <input type="text" class="form-control" ng-model="newUserResultModel.TempPassword" placeholder=" new password" />
+            </p>
+        </div>
+    </div>
+</div>
+

@@ -3,8 +3,11 @@ using System.Net;
 using System.Net.Http;
 using System.Security;
 using System.Web.Http;
+using System.Web.Security;
+using EIMS.Data;
 using Host.IIS.Common;
 using Host.IIS.Models;
+using WebMatrix.WebData;
 
 namespace Host.IIS.Controllers.API
 {
@@ -57,6 +60,30 @@ namespace Host.IIS.Controllers.API
             {
                 response = request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Unable to change password.");
             }
+
+            return response;
+        }
+
+
+
+        [HttpPost]
+        [Route("createuser")]
+        [Authorize(Roles = "admin,hr")]
+        public HttpResponseMessage CreateUser(HttpRequestMessage request,
+            [FromBody] CreateNewUserModel passwordModel)
+        {
+            HttpResponseMessage response = null;
+
+            var tempPassword = Membership.GeneratePassword(8, 1);
+            _securityAdapter.Register(passwordModel.Email, tempPassword, new
+            {
+                FullName = passwordModel.FullName,
+                Department_DepartmentId = passwordModel.DepartmentId,
+                Title = passwordModel.Title
+            });
+
+            Roles.AddUserToRole(passwordModel.Email, "employee");
+            response = request.CreateResponse(HttpStatusCode.OK, tempPassword);
 
             return response;
         }

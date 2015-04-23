@@ -5,19 +5,19 @@
     $scope.viewModelHelper = viewModelHelper;
 
 
-    var accountModelRules = [];
+    var profileModelRules = [];
 
     var setupRules = function () {
-        accountModelRules.push(new validator.PropertyRule("FullName", {
+        profileModelRules.push(new validator.PropertyRule("FullName", {
             required: { message: "Full name is required" }
         }));
-        accountModelRules.push(new validator.PropertyRule("Email", {
+        profileModelRules.push(new validator.PropertyRule("Email", {
             required: { message: "Email is required" }
         }));
-        accountModelRules.push(new validator.PropertyRule("Address", {
+        profileModelRules.push(new validator.PropertyRule("Address", {
             required: { message: "Address is required" }
         }));
-        accountModelRules.push(new validator.PropertyRule("MobilePhone", {
+        profileModelRules.push(new validator.PropertyRule("MobilePhone", {
             required: { message: "MobilePhone is required" }
         }));
     }
@@ -32,7 +32,7 @@
     };
 
     $scope.save = function () {
-        validator.ValidateModel($scope.profileModel, accountModelRules);
+        validator.ValidateModel($scope.profileModel, profileModelRules);
         viewModelHelper.modelIsValid = $scope.profileModel.isValid;
         viewModelHelper.modelErrors = $scope.profileModel.errors;
         if (viewModelHelper.modelIsValid) {
@@ -42,7 +42,7 @@
                 });
         }
         else
-            viewModelHelper.modelErrors = profileModel.errors;
+            viewModelHelper.modelErrors = $scope.profileModel.errors;
     }
 
     $scope.validate = function (field, invalid) {
