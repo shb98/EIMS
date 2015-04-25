@@ -16,10 +16,8 @@ namespace EIMS.Data.DataRepositories
             return entityContext.Departments.Add(entity);
         }
 
-        protected override Department UpdateEntity(EIMSDataContext entityContext, Department entity, out List<string> ignoredProperties)
+        protected override Department UpdateEntity(EIMSDataContext entityContext, Department entity)
         {
-            ignoredProperties = null;
-
             return (from e in entityContext.Departments
                     where e.DepartmentId == entity.DepartmentId
                     select e).FirstOrDefault();

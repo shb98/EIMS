@@ -2,6 +2,7 @@
 using System.ComponentModel.Composition;
 using System.Data.Entity;
 using System.Linq;
+using Core.Common.Utils;
 
 namespace EIMS.Data.DataRepositories
 {
@@ -14,15 +15,8 @@ namespace EIMS.Data.DataRepositories
             return entityContext.Employees.Add(entity);
         }
 
-        protected override Employee UpdateEntity(EIMSDataContext entityContext, Employee entity,
-            out List<string> ignoredProperties)
+        protected override Employee UpdateEntity(EIMSDataContext entityContext, Employee entity)
         {
-            ignoredProperties = new List<string>
-            {
-                "Title",
-                "Department"
-            };
-
             return (from e in entityContext.Employees
                 where e.EmployeeId == entity.EmployeeId
                 select e).FirstOrDefault();
@@ -30,8 +24,8 @@ namespace EIMS.Data.DataRepositories
 
         protected override IEnumerable<Employee> GetEntities(EIMSDataContext entityContext)
         {
-            return from e in entityContext.Employees
-                select e;
+            return (from e in entityContext.Employees
+                select e).Include(e=>e.Department);
         }
 
         protected override Employee GetEntity(EIMSDataContext entityContext, int id)
@@ -43,6 +37,24 @@ namespace EIMS.Data.DataRepositories
             var results = query.FirstOrDefault();
 
             return results;
+        }
+
+        // Title and department can only updated by HR or admin
+        public Employee UpdateBasicProfileInfo(Employee employee)
+        {
+            using (var entityContext = new EIMSDataContext())
+            {
+                var existingEntity = UpdateEntity(entityContext, employee);
+
+                SimpleMapper.PropertyMap(employee, existingEntity, new List<string>()
+                {
+                    "Title",
+                    "Department"
+                });
+
+                entityContext.SaveChanges();
+                return existingEntity;
+            }
         }
     }
 }

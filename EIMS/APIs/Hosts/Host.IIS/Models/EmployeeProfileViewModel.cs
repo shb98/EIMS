@@ -5,6 +5,8 @@ namespace Host.IIS.Models
 {
     public class EmployeeProfileViewModel
     {
+        public int EmployeeId { get; set; }
+
         [Required]
         public string FullName { get; set; }
 
@@ -26,5 +28,7 @@ namespace Host.IIS.Models
         public string Title { get; set; }
 
         public string Department { get; set; }
+
+        public int DepartmentId { get; set; }
     }
 }

@@ -23,3 +23,5 @@
 /// <reference path="angular-strap.js" />
 /// <reference path="../binding/models/newusermodel.js" />
 /// <reference path="../binding/controllers/createnewusercontroller.js" />
+/// <reference path="../binding/models/employeeprofile.js" />
+/// <reference path="../binding/controllers/employeemanagementcontroller.js" />

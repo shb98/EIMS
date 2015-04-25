@@ -14,7 +14,7 @@ namespace Core.Common.Data
     {
         protected abstract T AddEntity(U entityContext, T entity);
 
-        protected abstract T UpdateEntity(U entityContext, T entity, out List<string> ignoredProperties);
+        protected abstract T UpdateEntity(U entityContext, T entity);
 
         protected abstract IEnumerable<T> GetEntities(U entityContext);
 
@@ -53,10 +53,9 @@ namespace Core.Common.Data
         {
             using (U entityContext = new U())
             {
-                List<string> ignoredProperties = null;
-                T existingEntity = UpdateEntity(entityContext, entity, out ignoredProperties);
+                T existingEntity = UpdateEntity(entityContext, entity);
 
-                SimpleMapper.PropertyMap(entity, existingEntity, ignoredProperties);
+                SimpleMapper.PropertyMap(entity, existingEntity);
 
                 entityContext.SaveChanges();
                 return existingEntity;

@@ -133,7 +133,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\ProfileApi\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -154,6 +153,7 @@
     <Compile Include="Controllers\MVC\AccountController.cs" />
     <Compile Include="Controllers\MVC\HomeController.cs" />
     <Compile Include="Controllers\MVC\ProfileController.cs" />
+    <Compile Include="Controllers\MVC\EmployeeManagementController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -168,6 +168,8 @@
     <Content Include="Binding\Controllers\AccountChangePasswordController.js" />
     <Content Include="Binding\Controllers\AccountLoginController.js" />
     <Content Include="Binding\Controllers\CreateNewUserController.js" />
+    <Content Include="Binding\Controllers\EmployeeManagementController.js" />
+    <Content Include="Binding\Models\EmployeeProfile.js" />
     <Content Include="Binding\Controllers\ProfileController.js" />
     <Content Include="Binding\Models\AccountChangePasswordModel.js" />
     <Content Include="Binding\Models\AccountLoginModel.js" />
@@ -271,6 +273,7 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
     <Content Include="Views\Account\AddUser.cshtml" />
+    <Content Include="Views\EmployeeManagement\ManageEmployee.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Common\Core.Common\Core.Common.csproj">
