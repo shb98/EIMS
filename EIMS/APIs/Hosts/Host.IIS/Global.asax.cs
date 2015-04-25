@@ -24,9 +24,7 @@ namespace Host.IIS
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            if (!WebSecurity.Initialized)
-                WebSecurity.InitializeDatabaseConnection("EIMS", "Employees", "EmployeeId", "Email", true);
-
+            SecurityAdapter.Initialize();
 
             var catalog = new AggregateCatalog();
             catalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly()));

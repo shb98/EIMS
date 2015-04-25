@@ -10,8 +10,11 @@ namespace Host.IIS.Common
     public class SecurityAdapter : ISecurityAdapter
     {
         // TODO: Department Role Mapping
-        public void Initialize()
+        public static void Initialize()
         {
+            if (!WebSecurity.Initialized)
+                WebSecurity.InitializeDatabaseConnection("EIMS", "Employees", "EmployeeId", "Email", true);
+
             if (!WebSecurity.UserExists("admin@eims.com"))
             {
                 WebSecurity.CreateUserAndAccount("admin@eims.com", "Password01!");

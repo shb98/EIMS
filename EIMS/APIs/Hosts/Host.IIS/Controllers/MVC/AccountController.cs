@@ -12,15 +12,6 @@ namespace Host.IIS.Controllers.MVC
     [RoutePrefix("account")]
     public class AccountController : ControllerBase
     {
-        private readonly ISecurityAdapter _securityAdapter;
-
-        [ImportingConstructor]
-        public AccountController(ISecurityAdapter securityAdapter)
-        {
-            _securityAdapter = securityAdapter;
-            _securityAdapter.Initialize();
-        }
-
         [HttpGet]
         [Route("login")]
         public ActionResult Login(string returnUrl)
