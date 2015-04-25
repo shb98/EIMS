@@ -3,9 +3,10 @@ using System.ComponentModel.Composition;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using System.Web.Security;
+
 using EIMS.Data;
 using EIMS.Data.DataRepositories;
+
 using Host.IIS.Common;
 using Host.IIS.Models;
 
@@ -18,15 +19,11 @@ namespace Host.IIS.Controllers.API
     public class ProfileApiController : ApiControllerBase
     {
         private readonly IEmployeeProfileRepository _employeeProfileRepository;
-        private readonly ISecurityAdapter _securityAdapter;
 
         [ImportingConstructor]
-        public ProfileApiController(IEmployeeProfileRepository employeeProfileRepository, ISecurityAdapter securityAdapter)
+        public ProfileApiController(IEmployeeProfileRepository employeeProfileRepository)
         {
             _employeeProfileRepository = employeeProfileRepository;
-            _securityAdapter = securityAdapter;
-
-            _securityAdapter.Initialize();
         }
 
         [HttpGet]
@@ -55,11 +52,11 @@ namespace Host.IIS.Controllers.API
         [HttpPost]
         [Route("profileinfo")]
         [ValidateModel]
-        [Authorize]
         public HttpResponseMessage SaveProfileInfo(HttpRequestMessage request, EmployeeProfileViewModel profileModel)
         {
             var employeeId = CurrentUserId;
 
+            // Title and department can only updated by HR or admin
             var employee = new Employee
             {
                 EmployeeId = employeeId,
@@ -69,10 +66,7 @@ namespace Host.IIS.Controllers.API
                 Gender = profileModel.Gender,
                 Birthday = new DateTimeOffset(profileModel.Birthday),
                 MobilePhone = profileModel.MobilePhone,
-                Phone = profileModel.Phone,
-                // Title and department can only updated by HR
-                //Title = profileModel.Title
-                //Department = profileModel.Department
+                Phone = profileModel.Phone
             };
 
             _employeeProfileRepository.Update(employee);

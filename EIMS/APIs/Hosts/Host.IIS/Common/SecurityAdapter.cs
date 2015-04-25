@@ -9,6 +9,7 @@ namespace Host.IIS.Common
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class SecurityAdapter : ISecurityAdapter
     {
+        // TODO: Department Role Mapping
         public void Initialize()
         {
             if (!WebSecurity.UserExists("admin@eims.com"))

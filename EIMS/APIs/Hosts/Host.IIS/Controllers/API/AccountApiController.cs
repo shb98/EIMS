@@ -4,10 +4,9 @@ using System.Net.Http;
 using System.Security;
 using System.Web.Http;
 using System.Web.Security;
-using EIMS.Data;
+
 using Host.IIS.Common;
 using Host.IIS.Models;
-using WebMatrix.WebData;
 
 namespace Host.IIS.Controllers.API
 {
@@ -30,7 +29,7 @@ namespace Host.IIS.Controllers.API
         {
             HttpResponseMessage response = null;
 
-            bool success = _securityAdapter.Login(accountModel.LoginEmail, accountModel.Password,
+            var success = _securityAdapter.Login(accountModel.LoginEmail, accountModel.Password,
                 accountModel.RememberMe);
             if (success)
                 response = request.CreateResponse(HttpStatusCode.OK);
@@ -50,7 +49,7 @@ namespace Host.IIS.Controllers.API
 
             ValidateAuthorizedUser(passwordModel.LoginEmail);
 
-            bool success = _securityAdapter.ChangePassword(passwordModel.LoginEmail, passwordModel.OldPassword,
+            var success = _securityAdapter.ChangePassword(passwordModel.LoginEmail, passwordModel.OldPassword,
                 passwordModel.NewPassword);
             if (success)
             {
@@ -90,7 +89,7 @@ namespace Host.IIS.Controllers.API
 
         private void ValidateAuthorizedUser(string userRequested)
         {
-            string userLoggedIn = User.Identity.Name;
+            var userLoggedIn = User.Identity.Name;
             if (userLoggedIn != userRequested)
                 throw new SecurityException("Attempting to access data for another user.");
         }
