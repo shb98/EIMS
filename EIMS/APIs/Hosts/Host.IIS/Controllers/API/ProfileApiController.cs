@@ -35,6 +35,7 @@ namespace Host.IIS.Controllers.API
 
             var result = employees.Select(employee => new EmployeeProfileViewModel
             {
+                EmployeeId = employee.EmployeeId,
                 FullName = employee.FullName,
                 Email = employee.Email,
                 Address = employee.Address,
@@ -59,6 +60,7 @@ namespace Host.IIS.Controllers.API
 
             var viewModel = new EmployeeProfileViewModel
             {
+                EmployeeId = employee.EmployeeId,
                 FullName = employee.FullName,
                 Email = employee.Email,
                 Address = employee.Address,
@@ -105,11 +107,9 @@ namespace Host.IIS.Controllers.API
         [Authorize(Roles = "admin,hr")]
         public HttpResponseMessage SaveFullProfileInfo(HttpRequestMessage request, EmployeeProfileViewModel profileModel)
         {
-            var employeeId = CurrentUserId;
-
             var employee = new Employee
             {
-                EmployeeId = employeeId,
+                EmployeeId = profileModel.EmployeeId,
                 FullName = profileModel.FullName,
                 Email = profileModel.Email,
                 Address = profileModel.Address,

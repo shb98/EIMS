@@ -79,6 +79,7 @@
     <div ng-switch="viewMode">
         <div ng-switch-when="updateemployee">
             <form>
+                <input type="hidden" ng-model="currentEmployee.EmployeeId" />
                 @Html.Partial("~/Views/Shared/_ValidationErrors.cshtml")
                 <p class="input-group" style="width: 400px">
                     <span class="input-group-addon" style="width: 140px; text-align: left;">Full Name:</span>
