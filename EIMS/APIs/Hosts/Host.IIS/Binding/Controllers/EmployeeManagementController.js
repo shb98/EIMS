@@ -2,6 +2,7 @@
 
     $scope.viewMode = ''; // employeelist, updateemployee
     $scope.profileModel = null;
+    $scope.searchEmployeeModel = new EIMS.SearchEmployeeModel();
     $scope.viewModelHelper = viewModelHelper;
 
 
@@ -46,6 +47,14 @@
 
     $scope.update = function () {
         $scope.viewMode = 'updateemployee';
+    }
+
+    $scope.searchEmployee = function () {
+        viewModelHelper.apiPost('api/profile/searchemployee', $scope.searchEmployeeModel,
+            function (result) {
+                $scope.allEmployees = result.data;
+                $scope.viewMode = 'employeelist';
+            });
     }
 
     $scope.saveEmployee = function () {

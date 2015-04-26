@@ -25,3 +25,4 @@
 /// <reference path="../binding/controllers/createnewusercontroller.js" />
 /// <reference path="../binding/models/employeeprofile.js" />
 /// <reference path="../binding/controllers/employeemanagementcontroller.js" />
+/// <reference path="../binding/models/searchemployeemodel.js" />

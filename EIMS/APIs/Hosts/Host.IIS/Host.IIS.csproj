@@ -162,6 +162,7 @@
     <Compile Include="Models\CreateNewUserModel.cs" />
     <Compile Include="Models\DepartmentModel.cs" />
     <Compile Include="Models\EmployeeProfileViewModel.cs" />
+    <Compile Include="Models\SearchEmployeeOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -174,6 +175,7 @@
     <Content Include="Binding\Models\AccountChangePasswordModel.js" />
     <Content Include="Binding\Models\AccountLoginModel.js" />
     <Content Include="Binding\Models\NewUserModel.js" />
+    <Content Include="Binding\Models\SearchEmployeeModel.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />

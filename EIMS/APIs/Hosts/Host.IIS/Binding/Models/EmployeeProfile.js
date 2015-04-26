@@ -12,7 +12,6 @@
         self.Phone = '';
         self.MobilePhone = '';
         self.DepartmentId = '';
-        self.DepartmentId = '';
         self.Title = '';
     }
     eims.EmployeeProfileModel = EmployeeProfileModel;

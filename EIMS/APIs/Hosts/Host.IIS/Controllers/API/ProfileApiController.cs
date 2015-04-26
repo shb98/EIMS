@@ -4,7 +4,6 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using System.Web.Security;
 using EIMS.Data;
 using EIMS.Data.DataRepositories;
 
@@ -129,6 +128,56 @@ namespace Host.IIS.Controllers.API
 
             var response = request.CreateResponse(HttpStatusCode.OK);
             return response;
+        }
+
+
+
+        [HttpPost]
+        [Route("searchemployee")]
+        [ValidateModel]
+        [Authorize(Roles = "admin,hr")]
+        public HttpResponseMessage SearchEmployee(HttpRequestMessage request, SearchEmployeeOptions searchOptions)
+        {
+            var employees = _employeeProfileRepository.Get();
+
+            if (searchOptions != null)
+            {
+                if (!string.IsNullOrWhiteSpace(searchOptions.Email))
+                {
+                    employees = employees.Where(e => e.Email == searchOptions.Email);
+                } 
+
+                if (!string.IsNullOrWhiteSpace(searchOptions.FullName))
+                {
+                    employees = employees.Where(e => e.FullName.Contains(searchOptions.FullName));
+                }
+
+                if (searchOptions.DepartmentId != null && searchOptions.DepartmentId != 0)
+                {
+                    employees = employees.Where(e => e.Department.DepartmentId == searchOptions.DepartmentId);
+                }
+
+                if (!string.IsNullOrWhiteSpace(searchOptions.Title))
+                {
+                    employees = employees.Where(e => e.FullName.Contains(searchOptions.Title));
+                }
+            }
+
+            var result = employees.Select(employee => new EmployeeProfileViewModel
+            {
+                FullName = employee.FullName,
+                Email = employee.Email,
+                Address = employee.Address,
+                Gender = employee.Gender,
+                Birthday = employee.Birthday == null ? new DateTime(1900, 1, 1) : employee.Birthday.Value.Date,
+                MobilePhone = employee.MobilePhone,
+                Phone = employee.Phone,
+                Title = employee.Title,
+                Department = employee.Department == null ? string.Empty : employee.Department.Name,
+                DepartmentId = employee.Department == null ? 0 : employee.Department.DepartmentId
+            }).ToArray();
+
+            return request.CreateResponse(HttpStatusCode.OK, result);
         }
     }
 }
