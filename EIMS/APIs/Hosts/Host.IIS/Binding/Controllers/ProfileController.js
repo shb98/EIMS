@@ -36,7 +36,7 @@
         viewModelHelper.modelIsValid = $scope.profileModel.isValid;
         viewModelHelper.modelErrors = $scope.profileModel.errors;
         if (viewModelHelper.modelIsValid) {
-            viewModelHelper.apiPost('api/profile/profileinfo', $scope.profileModel,
+            viewModelHelper.apiPost('api/profile/basicprofileinfo', $scope.profileModel,
                 function (result) {
                     $scope.viewMode = 'success';
                 });

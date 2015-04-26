@@ -56,5 +56,29 @@ namespace EIMS.Data.DataRepositories
                 return existingEntity;
             }
         }
+
+
+
+        // Title and department can only updated by HR or admin
+        public Employee UpdateFullProfileInfo(Employee employee)
+        {
+            using (var entityContext = new EIMSDataContext())
+            {
+                var existingEntity = UpdateEntity(entityContext, employee);
+
+                SimpleMapper.PropertyMap(employee, existingEntity, new List<string>()
+                {
+                    "Title",
+                    "Department"
+                });
+                if (employee.Department != null)
+                {
+                    existingEntity.Department = entityContext.Departments.First(d => d.DepartmentId == employee.Department.DepartmentId);
+                }
+
+                entityContext.SaveChanges();
+                return existingEntity;
+            }
+        }
     }
 }

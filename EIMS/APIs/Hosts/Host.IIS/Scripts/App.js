@@ -173,7 +173,7 @@ window.valJs = {};
 
             rules['required'] = {
                 validator: function (value, params) {
-                    return (value || !(value.toString().trim() == ''));
+                    return (value && value.toString().trim() != '');
                 },
                 message: 'Value is required.'
             };

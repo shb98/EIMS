@@ -76,9 +76,9 @@ namespace Host.IIS.Controllers.API
         }
 
         [HttpPost]
-        [Route("profileinfo")]
+        [Route("basicprofileinfo")]
         [ValidateModel]
-        public HttpResponseMessage SaveProfileInfo(HttpRequestMessage request, EmployeeProfileViewModel profileModel)
+        public HttpResponseMessage SaveBasicProfileInfo(HttpRequestMessage request, EmployeeProfileViewModel profileModel)
         {
             var employeeId = CurrentUserId;
 
@@ -95,6 +95,37 @@ namespace Host.IIS.Controllers.API
             };
 
             _employeeProfileRepository.UpdateBasicProfileInfo(employee);
+
+            var response = request.CreateResponse(HttpStatusCode.OK);
+            return response;
+        }
+
+        [HttpPost]
+        [Route("fullprofileinfo")]
+        [ValidateModel]
+        [Authorize(Roles = "admin,hr")]
+        public HttpResponseMessage SaveFullProfileInfo(HttpRequestMessage request, EmployeeProfileViewModel profileModel)
+        {
+            var employeeId = CurrentUserId;
+
+            var employee = new Employee
+            {
+                EmployeeId = employeeId,
+                FullName = profileModel.FullName,
+                Email = profileModel.Email,
+                Address = profileModel.Address,
+                Gender = profileModel.Gender,
+                Birthday = new DateTimeOffset(profileModel.Birthday),
+                MobilePhone = profileModel.MobilePhone,
+                Phone = profileModel.Phone,
+                Department = new Department()
+                {
+                    DepartmentId = profileModel.DepartmentId
+                },
+                Title = profileModel.Title
+            };
+
+            _employeeProfileRepository.UpdateFullProfileInfo(employee);
 
             var response = request.CreateResponse(HttpStatusCode.OK);
             return response;

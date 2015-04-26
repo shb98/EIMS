@@ -34,24 +34,37 @@
                 $scope.allEmployees = result.data;
                 $scope.viewMode = 'employeelist';
             });
+        viewModelHelper.apiGet('api/department/alldepartments', null,
+                function (result) {
+                    $scope.departments = result.data;
+                });
+    };
+
+    $scope.setCurrentEmployee = function(employee) {
+        $scope.currentEmployee = employee;
     };
 
     $scope.update = function () {
         $scope.viewMode = 'updateemployee';
     }
 
-    $scope.save = function () {
+    $scope.saveEmployee = function () {
         validator.ValidateModel($scope.currentEmployee, profileModelRules);
         viewModelHelper.modelIsValid = $scope.currentEmployee.isValid;
         viewModelHelper.modelErrors = $scope.currentEmployee.errors;
         if (viewModelHelper.modelIsValid) {
-            viewModelHelper.apiPost('api/profile/profileinfo', $scope.currentEmployee,
+            viewModelHelper.apiPost('api/profile/fullprofileinfo', $scope.currentEmployee,
                 function (result) {
-                    $scope.viewMode = 'updateemployee';
+                    $scope.initialize();
+                    $scope.viewMode = 'employeelist';
                 });
         }
         else
             viewModelHelper.modelErrors = $scope.currentEmployee.errors;
+    }
+
+    $scope.cancelSaveEmployee = function () {
+        $scope.viewMode = 'employeelist';
     }
 
     $scope.validate = function (field, invalid) {
